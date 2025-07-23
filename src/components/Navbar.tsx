@@ -131,14 +131,12 @@ const Navbar = () => {
               <a>
                 <span>Services</span>{" "}
                 <i
-                  id="serviceDropDown"
                   className={`bi bi-chevron-down dropdown-indicator ${
                     dropdownState.services ? "rotate-180" : ""
                   }`}
                 ></i>
               </a>
               <ul
-                id="services"
                 className={`transition-all duration-300 overflow-hidden ${
                   dropdownState.services
                     ? "dropdown-active max-h-[1000px] opacity-100 scale-y-100"
@@ -163,14 +161,12 @@ const Navbar = () => {
               <a>
                 <span>Portfolio</span>{" "}
                 <i
-                  id="portfolioDropDown"
                   className={`bi bi-chevron-down dropdown-indicator ${
                     dropdownState.portfolios ? "rotate-180" : ""
                   }`}
                 ></i>
               </a>
               <ul
-                id="portfolios"
                 className={`transition-all duration-300 overflow-hidden ${
                   dropdownState.portfolios
                     ? "dropdown-active max-h-[1000px] opacity-100 scale-y-100"
@@ -195,14 +191,12 @@ const Navbar = () => {
               <a>
                 <span>Blogs</span>{" "}
                 <i
-                  id="blogsDropDown"
                   className={`bi bi-chevron-down dropdown-indicator ${
                     dropdownState.blogs ? "rotate-180" : ""
                   }`}
                 ></i>
               </a>
               <ul
-                id="blogs"
                 className={`transition-all duration-300 overflow-hidden ${
                   dropdownState.blogs
                     ? "dropdown-active max-h-[1000px] opacity-100 scale-y-100"
