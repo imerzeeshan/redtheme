@@ -1,6 +1,7 @@
 "use client";
 import { project } from "@/assets/assets";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Link from "next/link";
 // import Link from "next/link";
 import { useState } from "react";
 
@@ -83,7 +84,7 @@ const Portfolio = () => {
               {projectList.map((project) => (
                 <div key={project.id} className="portfolio-item filter-app">
                   <div className="portfolio-wrap">
-                    <a
+                    <Link
                       href={`/portfolio/${project.id}`}
                       data-gallery="portfolio-gallery-app"
                     >
@@ -92,7 +93,7 @@ const Portfolio = () => {
                         className="img-fluid"
                         alt="project Image"
                       />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               ))}

@@ -1,5 +1,6 @@
 import { teamMembers } from "@/assets/assets";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Link from "next/link";
 import React from "react";
 
 const Teams = () => {
@@ -33,18 +34,18 @@ const Teams = () => {
                   <h4>{member.name}</h4>
                   <span>{member.role}</span>
                   <div className="social">
-                    <a href={member.social.twitter}>
+                    <Link href={member.social.twitter}>
                       <i className="bi bi-twitter"></i>
-                    </a>
-                    <a href={member.social.twitter}>
+                    </Link>
+                    <Link href={member.social.twitter}>
                       <i className="bi bi-facebook"></i>
-                    </a>
-                    <a href={member.social.twitter}>
+                    </Link>
+                    <Link href={member.social.twitter}>
                       <i className="bi bi-linkedin"></i>
-                    </a>
-                    <a href={member.social.twitter}>
+                    </Link>
+                    <Link href={member.social.twitter}>
                       <i className="bi bi-instagram"></i>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

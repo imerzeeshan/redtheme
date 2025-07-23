@@ -1,52 +1,39 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-// import "../../public/assets/stylesheets/styles.css";
+import { useState, useEffect, useRef } from "react";
 
 const Navbar = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dropdownState, setDropdownState] = useState({
+    services: false,
+    portfolios: false,
+    blogs: false,
+  });
 
-  const handleAddRemove = () => {
-    const nav = document.getElementById("navbar");
-    if (nav) {
-      nav.style.right = "0%";
-      document.body.classList.add("mobile-nav-active");
-    }
-  };
-  const handleAddRight = () => {
-    const nav = document.getElementById("navbar");
-    if (nav) {
-      nav.style.right = "-100%";
-      document.body.classList.remove("mobile-nav-active");
-    }
-  };
+  const navbarRef = useRef<HTMLDivElement | null>(null);
 
   const handleTreeLine = () => {
-    handleAddRemove();
+    if (navbarRef.current) {
+      navbarRef.current.style.right = "0%";
+      document.body.style.overflow = "hidden";
+    }
     setIsClicked(true);
   };
 
   const handleCrossIcon = () => {
-    handleAddRight();
+    if (navbarRef.current) {
+      navbarRef.current.style.right = "-100%";
+      document.body.style.overflow = "";
+    }
     setIsClicked(false);
   };
 
-  const handleServiceClick = (parentClass: string, childClass: string) => {
-    const service = document.getElementById(parentClass);
-    if (service) {
-      service?.classList.toggle("dropdown-active");
-      service?.classList.toggle("max-h-0");
-      service?.classList.toggle("opacity-0");
-      service?.classList.toggle("scale-y-95");
-
-      service?.classList.toggle("max-h-[1000px]");
-      service?.classList.toggle("opacity-100");
-      service?.classList.toggle("scale-y-100");
-    }
-
-    const indicator = document.getElementById(childClass);
-    indicator?.classList.toggle("rotate-180");
+  const handleServiceClick = (section: "services" | "portfolios" | "blogs") => {
+    setDropdownState((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
   };
 
   useEffect(() => {
@@ -66,90 +53,177 @@ const Navbar = () => {
       }`}
     >
       <div className="w-full max-w-[90%] mx-auto lg:mx-10 xl:mx-35 flex items-center justify-between py-4">
-        <a href="/" className="logo flex items-center">
+        <Link href="/" className="logo flex items-center">
           <img src="/assets/images/logo.png" alt="logo" />
-        </a>
-        <nav id="navbar" className="navbar">
-          <ul>
+        </Link>
+
+        <nav id="navbar" ref={navbarRef} className="navbar">
+          {/* Desktop view navbar */}
+          <ul className="hidden xl:flex">
             <li className="cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent">
-              <a href="/">Home</a>
+              <Link href="/">Home</Link>
             </li>
             <li className="cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent">
-              <a href="/about">About Us</a>
+              <Link href="/about">About Us</Link>
+            </li>
+            <li className="dropdown cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent">
+              <Link href={"/services"}>
+                <span>Services</span>{" "}
+                <i className="bi bi-chevron-down dropdown-indicator"></i>
+              </Link>
+              <ul>
+                <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
+                  <Link href="/services">Services</Link>
+                </li>
+                <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
+                  <Link href="/services/single-service">Single Service</Link>
+                </li>
+                <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
+                  <Link href="/services/plans">Pricing</Link>
+                </li>
+              </ul>
+            </li>
+            <li className="dropdown cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent">
+              <Link href={"/portfolio"}>
+                <span>Portfolio</span>{" "}
+                <i className="bi bi-chevron-down dropdown-indicator"></i>
+              </Link>
+              <ul>
+                <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
+                  <Link href="/portfolio">Projects</Link>
+                </li>
+                <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
+                  <Link href="/portfolio/single-project">Single Project</Link>
+                </li>
+              </ul>
+            </li>
+            <li className="cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent">
+              <Link href="/team">Team</Link>
+            </li>
+            <li className="dropdown cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent">
+              <Link href={"/blogs"}>
+                <span>Blogs</span>{" "}
+                <i className="bi bi-chevron-down dropdown-indicator"></i>
+              </Link>
+              <ul>
+                <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
+                  <Link href="/blogs">Blogs Grid</Link>
+                </li>
+                <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
+                  <Link href="/blogs/single-blog">Blog Details</Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          {/* Mobile view navbar */}
+          <ul className="xl:hidden">
+            <li className="cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent">
+              <Link href="/about">About Us</Link>
             </li>
             <li
               className="dropdown cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent"
-              onClick={() => handleServiceClick("services", "serviceDropDown")}
+              onClick={() => handleServiceClick("services")}
             >
               <a>
                 <span>Services</span>{" "}
                 <i
                   id="serviceDropDown"
-                  className="bi bi-chevron-down dropdown-indicator"
+                  className={`bi bi-chevron-down dropdown-indicator ${
+                    dropdownState.services ? "rotate-180" : ""
+                  }`}
                 ></i>
               </a>
-              <ul id="services">
+              <ul
+                id="services"
+                className={`transition-all duration-300 overflow-hidden ${
+                  dropdownState.services
+                    ? "dropdown-active max-h-[1000px] opacity-100 scale-y-100"
+                    : "max-h-0 opacity-0 scale-y-95"
+                }`}
+              >
                 <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
-                  <a href="/services">Services</a>
+                  <Link href="/services">Services</Link>
                 </li>
                 <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
-                  <a href="/services/single-service">Single Service</a>
+                  <Link href="/services/single-service">Single Service</Link>
                 </li>
                 <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
-                  <a href="/services/plans">Pricing</a>
+                  <Link href="/services/plans">Pricing</Link>
                 </li>
               </ul>
             </li>
             <li
               className="dropdown cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent"
-              onClick={() =>
-                handleServiceClick("portfolios", "portfolioDropDown")
-              }
+              onClick={() => handleServiceClick("portfolios")}
             >
               <a>
                 <span>Portfolio</span>{" "}
                 <i
                   id="portfolioDropDown"
-                  className="bi bi-chevron-down dropdown-indicator"
+                  className={`bi bi-chevron-down dropdown-indicator ${
+                    dropdownState.portfolios ? "rotate-180" : ""
+                  }`}
                 ></i>
               </a>
-              <ul id="portfolios">
+              <ul
+                id="portfolios"
+                className={`transition-all duration-300 overflow-hidden ${
+                  dropdownState.portfolios
+                    ? "dropdown-active max-h-[1000px] opacity-100 scale-y-100"
+                    : "max-h-0 opacity-0 scale-y-95"
+                }`}
+              >
                 <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
-                  <a href="/portfolio">Projects</a>
+                  <Link href="/portfolio">Projects</Link>
                 </li>
                 <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
-                  <a href="/portfolio/single-project">Single Project</a>
+                  <Link href="/portfolio/single-project">Single Project</Link>
                 </li>
               </ul>
             </li>
             <li className="cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent">
-              <a href="/team">Team</a>
+              <Link href="/team">Team</Link>
             </li>
             <li
               className="dropdown cursor-pointer hover:bg-gray-100/20 xl:hover:bg-transparent"
-              onClick={() => handleServiceClick("blogs", "blogsDropDown")}
+              onClick={() => handleServiceClick("blogs")}
             >
               <a>
                 <span>Blogs</span>{" "}
                 <i
                   id="blogsDropDown"
-                  className="bi bi-chevron-down dropdown-indicator"
+                  className={`bi bi-chevron-down dropdown-indicator ${
+                    dropdownState.blogs ? "rotate-180" : ""
+                  }`}
                 ></i>
               </a>
-              <ul id="blogs">
+              <ul
+                id="blogs"
+                className={`transition-all duration-300 overflow-hidden ${
+                  dropdownState.blogs
+                    ? "dropdown-active max-h-[1000px] opacity-100 scale-y-100"
+                    : "max-h-0 opacity-0 scale-y-95"
+                }`}
+              >
                 <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
-                  <a href="/blogs">Blogs Grid</a>
+                  <Link href="/blogs">Blogs Grid</Link>
                 </li>
                 <li className="hover:bg-gray-100/20 xl:hover:bg-transparent">
-                  <a href="/blogs/single-blog">Blog Details</a>
+                  <Link href="/blogs/single-blog">Blog Details</Link>
                 </li>
               </ul>
             </li>
           </ul>
         </nav>
-        <a href="/contact" className="default-theme-btn-one">
+
+        <Link href="/contact" className="default-theme-btn-one">
           Contact Us <span></span>
-        </a>
+        </Link>
+
         <i
           onClick={handleTreeLine}
           className={`mobile-nav-toggle mobile-nav-show bi bi-list ${

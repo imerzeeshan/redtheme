@@ -1,5 +1,6 @@
 import { plans } from "@/assets/assets";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Link from "next/link";
 
 const Plans = () => {
   const { pricing } = plans;
@@ -43,9 +44,9 @@ const Plans = () => {
                       ))}
                     </ul>
                   </div>
-                  <a href="#" className="default-theme-btn-two">
+                  <Link href="#" className="default-theme-btn-two">
                     Order Now<span></span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}

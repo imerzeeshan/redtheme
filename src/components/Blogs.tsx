@@ -1,4 +1,5 @@
 import { blogs } from "@/assets/assets";
+import Link from "next/link";
 
 const Blogs = () => {
   const { posts } = blogs;
@@ -24,7 +25,7 @@ const Blogs = () => {
                 </div>
                 <p className="post-category">{blog.category}</p>
                 <h2 className="title leading-6 text-[#c00113] hover:underline cursor-pointer">
-                  <a href={`/blogs/${blog.id}`}>{blog.title}</a>
+                  <Link href={`/blogs/${blog.id}`}>{blog.title}</Link>
                 </h2>
                 <div className="flex items-center">
                   <div className="post-meta">

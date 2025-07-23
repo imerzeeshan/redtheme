@@ -2,6 +2,7 @@ import { aboutCompany } from "@/assets/assets";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Feature from "@/components/Feature";
 import SkillBar from "@/components/SkillsBar";
+import Link from "next/link";
 
 const About = () => {
   const { description, skills, image } = aboutCompany;
@@ -40,9 +41,9 @@ const About = () => {
                   ))}
                 </ul>
               </div>
-              <a href="/contact" className="default-theme-btn-two">
+              <Link href="/contact" className="default-theme-btn-two">
                 Contact Us <span></span>
-              </a>
+              </Link>
             </div>
             {/*  end  skills  */}
 

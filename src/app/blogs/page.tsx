@@ -1,5 +1,6 @@
 import { blogs } from "@/assets/assets";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Link from "next/link";
 
 const Blogs = () => {
   const { posts } = blogs;
@@ -23,11 +24,11 @@ const Blogs = () => {
                     <img src={blog.image} alt="" className="img-fluid" />
                   </div>
                   <p className="post-category">{blog.category}</p>
-                  <a href={`/blogs/${blog.id}`}>
+                  <Link href={`/blogs/${blog.id}`}>
                     <h2 className="title leading-6 text-[#c00113] hover:underline">
                       {blog.title}
                     </h2>
-                  </a>
+                  </Link>
                   <div className="flex items-center">
                     <div className="post-meta">
                       <p className="post-author">{blog.author}</p>

@@ -1,4 +1,5 @@
 import { homeServices } from "@/assets/assets";
+import Link from "next/link";
 
 const Services = () => {
   const { content } = homeServices;
@@ -13,7 +14,7 @@ const Services = () => {
                 key={eachService.id}
                 data-aos={eachService.animation}
               >
-                <a href={`/services/${eachService.id}`}>
+                <Link href={`/services/${eachService.id}`}>
                   <div className="icon-box">
                     <div className="icon">
                       <i className={eachService.icon}></i>
@@ -22,7 +23,7 @@ const Services = () => {
                     <p>{eachService.description}</p>
                     <span></span>
                   </div>
-                </a>
+                </Link>
               </div>
             ))}
           </div>

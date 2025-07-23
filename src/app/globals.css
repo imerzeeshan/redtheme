@@ -554,7 +554,7 @@ section {
   .navbar ul {
     margin: 0;
     padding: 0;
-    display: flex;
+    /* display: flex; */
     list-style: none;
     align-items: center;
   }
@@ -2375,9 +2375,9 @@ section {
   margin-left: 15px;
 }
 
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 
 /*--------------------------------------------------------------
 # Particles
@@ -2836,9 +2836,9 @@ canvas {
   margin-left: 15px;
 }
 
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 
 /*--------------------------------------------------------------
 # Footer

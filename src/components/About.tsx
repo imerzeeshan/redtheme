@@ -1,10 +1,11 @@
 import React from "react";
 import SkillBar from "./SkillsBar";
 import { aboutCompany } from "@/assets/assets";
+import Link from "next/link";
 
 const About = () => {
   const { skills } = aboutCompany;
-  
+
   return (
     //   <!-- About -->
     <section id="about" className="about">
@@ -40,9 +41,9 @@ const About = () => {
                 ))}
               </ul>
             </div>
-            <a href="/contact" className="default-theme-btn-two">
+            <Link href="/contact" className="default-theme-btn-two">
               Contact Us <span></span>
-            </a>
+            </Link>
           </div>
           {/*  end  skills  */}
 

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <footer id="footer" className="footer-section">
@@ -7,9 +9,9 @@ const Footer = () => {
             <div className="lg:flex-1/3">
               <div className="footer-widget">
                 <div className="footer-logo">
-                  <a href="#" className="logo flex items-center">
+                  <Link href="#" className="logo flex items-center">
                     <img src="/assets/images/logo.png" alt="logo" />
-                  </a>
+                  </Link>
                 </div>
                 <div className="footer-text">
                   <p>
@@ -20,18 +22,18 @@ const Footer = () => {
                 </div>
                 <div className="footer-social-icon">
                   <span>Follow us</span>
-                  <a href="#" className="twitter">
+                  <Link href="#" className="twitter">
                     <i className="bi bi-twitter"></i>
-                  </a>
-                  <a href="#" className="facebook">
+                  </Link>
+                  <Link href="#" className="facebook">
                     <i className="bi bi-facebook"></i>
-                  </a>
-                  <a href="#" className="instagram">
+                  </Link>
+                  <Link href="#" className="instagram">
                     <i className="bi bi-instagram"></i>
-                  </a>
-                  <a href="#" className="aedin">
+                  </Link>
+                  <Link href="#" className="aedin">
                     <i className="bi bi-aedin"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -43,28 +45,28 @@ const Footer = () => {
                 </div>
                 <ul className="list">
                   <li>
-                    <a href="single-service.html">Web Design</a>
+                    <Link href="#">Web Design</Link>
                   </li>
                   <li>
-                    <a href="single-service.html">App Developemnt</a>
+                    <Link href="#">App Developemnt</Link>
                   </li>
                   <li>
-                    <a href="single-service.html">Cloud Services</a>
+                    <Link href="#">Cloud Services</Link>
                   </li>
                   <li>
-                    <a href="single-service.html">Domain And Hosting</a>
+                    <Link href="#">Domain And Hosting</Link>
                   </li>
                   <li>
-                    <a href="single-service.html">Seo Optimization</a>
+                    <Link href="#">Seo Optimization</Link>
                   </li>
                   <li>
-                    <a href="single-service.html">Social Media</a>
+                    <Link href="#">Social Media</Link>
                   </li>
                   <li>
-                    <a href="single-service.html">Data Secure</a>
+                    <Link href="#">Data Secure</Link>
                   </li>
                   <li>
-                    <a href="single-service.html">Web Hosting</a>
+                    <Link href="#">Web Hosting</Link>
                   </li>
                 </ul>
               </div>
@@ -76,28 +78,28 @@ const Footer = () => {
                 </div>
                 <ul className="list">
                   <li>
-                    <a href="/about">About</a>
+                    <Link href="/about">About</Link>
                   </li>
                   <li>
-                    <a href="/services/plans">Pricing</a>
+                    <Link href="/services/plans">Pricing</Link>
                   </li>
                   <li>
-                    <a href="/faqs">FAQs</a>
+                    <Link href="/faqs">FAQs</Link>
                   </li>
                   <li>
-                    <a href="/team">Team</a>
+                    <Link href="/team">Team</Link>
                   </li>
                   <li>
-                    <a href="/blogs">Blogs</a>
+                    <Link href="/blogs">Blogs</Link>
                   </li>
                   <li>
-                    <a href="/blogs/single-blog">Single Blog</a>
+                    <Link href="/blogs/single-blog">Single Blog</Link>
                   </li>
                   <li>
-                    <a href="#term-conditions">Terms &amp; Conditions</a>
+                    <Link href="#term-conditions">Terms &amp; Conditions</Link>
                   </li>
                   <li>
-                    <a href="/">Sample Page</a>
+                    <Link href="/">Sample Page</Link>
                   </li>
                 </ul>
               </div>
@@ -149,9 +151,9 @@ const Footer = () => {
             <div className="copyright-text">
               <p>
                 RedTheme<span>.</span> © 2024 - Designed by{" "}
-                <a href="https://www.templatemonster.com/authors/zrthemes/">
+                <Link href="https://www.templatemonster.com/authors/zrthemes/">
                   ZRTHEMES
-                </a>
+                </Link>
               </p>
             </div>
           </div>
